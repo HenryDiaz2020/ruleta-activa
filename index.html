@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pagina Oficial - Ruleta Activa </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">	
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="app">
+		<!-- MENU -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="border-bottom: 2px solid green;">
+		  <img src="img/RULETACTIVA.png" width="120" class="d-inline-block align-top" alt="">
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+		    <ul class="navbar-nav">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="#sorteos" data-ancla="sorteos">SORTEOS <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item active">
+		        <a class="nav-link" href="#pagamos" data-ancla="pagamos">PAGAMOS</a>
+		      </li>
+		      <li class="nav-item active">
+		        <a class="nav-link" href="#consiste" data-ancla="consiste">RULETA ACTIVA</a>
+		      </li>
+		      <li class="nav-item active">
+		        <a class="nav-link" href="#horaSorteos" data-ancla="horaSorteos">HORA DE SORTEOS</a>
+		      </li>	
+		      <li class="nav-item active">
+		        <a class="nav-link" href="#animalitos" data-ancla="animalitos">ANIMALITOS</a>
+		      </li>	
+		      <li class="nav-item active">
+		        <a class="nav-link" href="#patrocinadores" data-ancla="patrocinadores">PATROCINADORES</a>
+		      </li>			      		      	      		      
+		    </ul>
+		  </div>
+		</nav>
+		<!-- FIN MENU -->
+
+		<!-- SORTEOS DEL DIA  -->
+		<a name="sorteos" id="sorteos"></a>
+		<div class="container-fluid mt-10">
+			<div class="row" style="
+			    padding: 20px;
+			    text-shadow: 0px 1px 1px black;	
+			">
+				<div class="col-md-12">
+					<h2 class="titulo" style="font-size: 3em;"> SORTEOS DEL DIA </h2>
+					<hr style="background-color: red;">
+				</div>
+			</div>			
+		</div>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-12" v-if='!resulSorteo'>
+					<div class="p-5">
+						<h2 class="text-center">ESPERANDO RESULTADOS</h2>					
+					</div>
+				</div>
+				<div class="col-md-3" v-else v-for="resultado in resulSorteo">
+					<div class="shadow-sm p-3 mb-5 bg-white rounded">
+						<img v-bind:src="resultado.img" alt="" class="img-fluid mx-auto d-block">	
+						<p class="text-center titulo"> <span style="font-size: 20px;">{{resultado.hora}}</span> <br> N# Sorteo:  {{resultado.nro_sorteo}}</p>
+					</div>
+				</div>
+			</div>					
+		</div>
+		<!-- FIN SORTEOS DEL DIA -->
+
+		<!-- PAGAMOS -->		
+		<a name="pagamos" id="pagamos"></a>
+		<div class="container-fluid" style="background-color: #db0200; color: white;">
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="nav justify-content-center">
+						<li class="nav-list">
+							<h3 class="p-2 text-center titulo tituloresp"> PAGAMOS  </h3>
+						</li>
+						<li class="nav-list"  style="margin-top: 1%;">
+							<h3 class="p-2 text-center">1x30</h3>
+						</li>	
+						<li class="nav-list"  style="margin-top: 1%;">
+							<h3 class="p-2 text-center">10x300</h3>
+						</li>
+						<li class="nav-list"  style="margin-top: 1%;">
+							<h3 class="p-2 text-center">100x3000</h3> 	
+						</li>																		
+					</ul>
+				</div>
+			</div>
+		</div>		
+		<!-- FIN PAGAMOS -->
+		
+		<!-- CONSISTE -->		
+		<a name="consiste" id="consiste"></a>
+		<div class="container-fluid mt-10">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<h2 class="titulo font-42">RULETA ACTIVA</h2>					
+					<p class="text-justify p-2 font-20">Consiste en acertar la figura del animal representado por un número y a su vez
+					un color seleccionados por el jugador, jugadora, apostador, apostadora, acertando de
+					manera aleatoria la combinación desde un sistema de sorteo electrónico previamente
+					certificado por el organismo competente en metrología.</p>
+
+			
+					<ul class="nav justify-content-center">
+						<li class="nav-item" style="margin-left: 4%;"> <div style="margin-top: 10%;"> <a href="https://twitter.com/ruletactivave?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Siguenos @ruletactivave</a></div> </li>
+						<li class="nav-item" style="margin-left: 4%;"><a href="https://www.youtube.com/channel/UCuFGaXrG_OIGxfbVHnfER2g" target="_blank"><img src="img/youtube.png" class="img-fluid d-block mx-auto" width="50" alt="Youtube"></a></li>
+						<li class="nav-item" style="margin-left: 4%;"><a href="https://www.instagram.com/RULETACTIVAVE/" target="_blank"><img src="img/instagram.png" class="img-fluid d-block mx-auto" width="50" alt="Instagram"></a></li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+		<!-- fin consiste -->
+
+		<!-- SORTEOS -->		
+		<a name="horaSorteos" id="horaSorteos"></a>
+		<div class="container mt-10">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="text-center titulo"> - HORARIO DE SORTEOS - </h2>				
+				</div>
+			</div>
+			<div class="row justify-content-center mt-5">
+				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-24">9:00 AM</h3></div>
+				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-32">10:00 AM</h3></div>
+				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-24">11:00 AM</h3></div>
+				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-32">12:00 PM</h3></div>
+				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-24">1:00 PM</h3></div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-32">2:00 PM</h3></div>					
+				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-24">3:00 PM</h3></div>
+				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-32">4:00 PM</h3></div>
+				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-24">6:00 PM</h3></div>
+				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-32">7:00 PM</h3></div>					
+			</div>
+		</div>
+		<!-- FIN SORTEOS -->
+
+		<!-- ANIMALITOS -->		
+		<a name="animalitos" id="animalitos"></a>
+		<div class="container mt-10">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="text-center titulo"> CONOCE NUESTROS ANIMALITOS  </h2>				
+					<hr>
+				</div>
+			</div>
+			
+			<!-- Primer Carrusel -->
+			<div class="row mt-1">
+				<div class="col-md-12">
+
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+					  <ol class="carousel-indicators">
+					    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+					  </ol>
+					  <div class="carousel-inner">
+					    <div class="carousel-item active">
+					    	<ul class="nav justify-content-center">
+								<li class="nav-item"><img v-bind:src="imgData[0]['img']" class="w-220" width="220"></li>				
+								<li class="nav-item"><img v-bind:src="imgData[1]['img']" class="w-220" width="220"></li>		
+								<li class="nav-item"><img v-bind:src="imgData[2]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[3]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[4]['img']" class="w-220" width="220"></li>			
+					    	</ul>
+					    </div>
+					    <div class="carousel-item">
+					    	<ul class="nav justify-content-center">
+								<li class="nav-item"><img v-bind:src="imgData[5]['img']" class="w-220" width="220"></li>				
+								<li class="nav-item"><img v-bind:src="imgData[6]['img']" class="w-220" width="220"></li>		
+								<li class="nav-item"><img v-bind:src="imgData[7]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[8]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[9]['img']" class="w-220" width="220"></li>	
+							</ul>
+					    </div>
+					  </div>
+					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
+					</div>					
+				</div>
+			</div>			
+
+			<!-- Segundo Carrusel -->
+			<div class="row mt-1">
+				<div class="col-md-12">
+
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+					  <ol class="carousel-indicators">
+					    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+					  </ol>
+					  <div class="carousel-inner">
+					    <div class="carousel-item active">
+					    	<ul class="nav justify-content-center">
+								<li class="nav-item"><img v-bind:src="imgData[10]['img']" class="w-220" width="220"></li>				
+								<li class="nav-item"><img v-bind:src="imgData[11]['img']" class="w-220" width="220"></li>		
+								<li class="nav-item"><img v-bind:src="imgData[12]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[13]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[14]['img']" class="w-220" width="220"></li>			
+					    	</ul>
+					    </div>
+					    <div class="carousel-item">
+					    	<ul class="nav justify-content-center">
+								<li class="nav-item"><img v-bind:src="imgData[15]['img']" class="w-220" width="220"></li>				
+								<li class="nav-item"><img v-bind:src="imgData[16]['img']" class="w-220" width="220"></li>		
+								<li class="nav-item"><img v-bind:src="imgData[17]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[18]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[19]['img']" class="w-220" width="220"></li>	
+							</ul>
+					    </div>
+					  </div>
+					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
+					</div>					
+				</div>
+			</div>		
+
+			<!-- Tres Carrusel -->
+			<div class="row mt-1">
+				<div class="col-md-12">
+
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+					  <ol class="carousel-indicators">
+					    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+					  </ol>
+					  <div class="carousel-inner">
+					    <div class="carousel-item active">
+					    	<ul class="nav justify-content-center">
+								<li class="nav-item"><img v-bind:src="imgData[20]['img']" class="w-220" width="220"></li>				
+								<li class="nav-item"><img v-bind:src="imgData[21]['img']" class="w-220" width="220"></li>		
+								<li class="nav-item"><img v-bind:src="imgData[22]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[23]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[24]['img']" class="w-220" width="220"></li>			
+					    	</ul>
+					    </div>
+					    <div class="carousel-item">
+					    	<ul class="nav justify-content-center">
+								<li class="nav-item"><img v-bind:src="imgData[25]['img']" class="w-220" width="220"></li>				
+								<li class="nav-item"><img v-bind:src="imgData[26]['img']" class="w-220" width="220"></li>		
+								<li class="nav-item"><img v-bind:src="imgData[27]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[28]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[29]['img']" class="w-220" width="220"></li>	
+							</ul>
+					    </div>
+					  </div>
+					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
+					</div>					
+				</div>
+			</div>					
+
+			<!-- Cuatro Carrusel -->
+			<div class="row mt-1">
+				<div class="col-md-12">
+
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+					  <ol class="carousel-indicators">
+					    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>					   
+					  </ol>
+					  <div class="carousel-inner">
+					    <div class="carousel-item active">
+					    	<ul class="nav justify-content-center">
+								<li class="nav-item"><img v-bind:src="imgData[30]['img']" class="w-220" width="220"></li>				
+								<li class="nav-item"><img v-bind:src="imgData[31]['img']" class="w-220" width="220"></li>		
+								<li class="nav-item"><img v-bind:src="imgData[32]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[33]['img']" class="w-220" width="220"></li>
+								<li class="nav-item"><img v-bind:src="imgData[34]['img']" class="w-220" width="220"></li>			
+					    	</ul>
+					    </div>
+					    <div class="carousel-item">
+					    	<ul class="nav justify-content-center">
+								<li class="nav-item"><img v-bind:src="imgData[35]['img']" class="w-220" width="220"></li>				
+								<li class="nav-item"><img v-bind:src="imgData[36]['img']" class="w-220" width="220"></li>		
+								<li class="nav-item"><img v-bind:src="imgData[37]['img']" class="w-220" width="220"></li>
+							</ul>
+					    </div>
+					  </div>
+					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
+					</div>					
+				</div>
+			</div>					
+
+		</div>
+		<!-- FIN ANIMALITOS -->		
+		
+		<!-- patrocinadores -->		
+		<a name="patrocinadores" id="patrocinadores"></a>
+		<div class="container mt-10">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="titulo text-center">PATROCINADO</h2>
+					<hr style="width: 45%;">
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-10">
+					<ul class="nav justify-content-center">
+						<li class="nav-item" style="margin-left: 4%;"><img src="img/CONALOT.png" class="img-fluid d-block mx-auto" width="300" alt="CONALOT"></li>
+						<li class="nav-item" style="margin-left: 4%;"><img src="img/gob_monagas.png" class="img-fluid d-block mx-auto" width="300" alt="gob_monagas"></li>
+						<li class="nav-item" style="margin-left: 4%;"><img src="img/loteria_oriente.jpg" class="img-fluid d-block mx-auto" width="200" alt="loteria_oriente"></li>
+					</ul>
+				</div>
+			</div>
+		</div>	
+		<!-- fin patrocinadores -->
+
+		<!-- FOOTER -->
+		<div class="container-fluid mt-5" style="background-color: green">
+			<div class="row">
+				<div class="col-md-4">
+					<a href="http://felixblanco.com.ve/" target="_blank"><img src="img/fb-400x400.png" class="img-fluid d-block mx-auto" alt="Felix Blanco - FullStack Develloper" width="80"></a>
+				</div>
+				<div class="col-md-4">
+					<div class="p-3 text-center">
+						<a href='img/reglamento-ruleta.PDF' target="_blank" style="color: black;">- Descarga Reglamento PDF <i class="far fa-file-pdf"></i> -</a>					
+					</div>
+				</div>
+				<div class="col-md-4 text-right">
+					<button class="btn btn-outline-second mt-4" id="arriba">
+						<i class="fas fa-chevron-up"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<!-- END FOOTER -->
+	</div>
+
+	<!-- Vuejs & Axios -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	
+	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	
+	<script src="my-script.js"></script>
+	<script>
+		$(document).ready(function(){
+			
+			$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			})
+			
+			$('#arriba').click(function(){ //Id del elemento cliqueable
+				$('html, body').animate({scrollTop:0}, 'slow');
+				return false;
+			});
+
+			// Scroll NavDinamico
+			$('.navbar .nav-item a').click(function(e){			
+				e.preventDefault(); //evitar el eventos del enlace normal
+				var strAncla=$(this).attr('href'); //id del ancla
+				$('body,html').stop(true,true).animate({				
+					scrollTop: $(strAncla).offset().top
+				},1000);
+				
+			});			
+		})		
+	</script>
+</body>
+</html>

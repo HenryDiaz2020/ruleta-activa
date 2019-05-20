@@ -1,0 +1,33 @@
+/*
+	Autor: Felix Blanco;
+	Url: FelixBlanco.com.ve/;
+	Style Para: Loteria de Oriente - Ruleta ;
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Catamaran|Signika|Lobster');
+/*
+	Google Fonts
+	font-family: 'Catamaran', sans-serif;
+	font-family: 'Signika', sans-serif;	
+    font-family: 'Lobster', cursive;	
+*/
+
+body{ font-family: 'Catamaran', sans-serif; }
+
+.navbar .nav-link{ font-size: 22px; }
+.titulo{ font-family: 'Lobster', cursive; }
+
+.font-20{ font-size: 20px; }
+.font-24{ font-size: 24px; }
+.font-26{ font-size: 26px; }
+.font-32{ font-size: 32px; }
+.font-42{ font-size: 42px; }
+.tituloresp{ font-size: 3em; }
+
+.mt-8{ margin-top: 8%; }
+.mt-10{ margin-top: 10% }
+
+@media (max-width: 600px) {
+	.mt-10{ margin-top: 30%; }
+	.tituloresp{ font-size: 60px; }
+}
