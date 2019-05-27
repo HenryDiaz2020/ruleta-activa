@@ -4,7 +4,7 @@ new Vue({
 		this.createArrayImg();
 	},
 	data: {
-		imgData : [], resultados:[], resulSorteo: []				
+		imgData : [], resultados:[], resulSorteo: [], buscador: null, dateSi: null				
 	},
 	methods:{
 		createArrayImg:function(){		
@@ -17,21 +17,23 @@ new Vue({
 				}						
 			}
 			
-			// this.imgData[5]['img']
-			console.log( this.imgData );
+			// this.imgData[5]['img']			
 			this.getSorteos(); 					
 		},
 		getSorteos(){
 			axios.get('http://localhost:8000/api/v1/loteria/2').then( resp => {
 				this.resultados = resp.data.resultados;
+				this.dateSi = resp.data.date;
 				console.log( this.resultados )
 				this.filtroResultados(); // Filtramos los resultados 
 			})					
 		},
 		buscar:function(){
-			axios.get('http://api-sorteos.felixblanco.com.ve/api/v1/loteria/1?date='+this.buscador).then( resp => {
+			axios.get('http://localhost:8000/api/v1/loteria/2?date='+this.buscador).then( resp => {
 				this.resultados = resp.data.resultados;
-				// $('#exampleModal').modal('hide');
+				this.dateSi = resp.data.date;
+				$('#exampleModal').modal('hide');
+				this.filtroResultados();
 			})
 		},
 		filtroResultados:function(){
@@ -45,7 +47,6 @@ new Vue({
 				}																								
 			})
 			this.resulSorteo = resulT
-
 		}				
 	}
 })

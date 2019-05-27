@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">	
 	<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 	<div id="app">
@@ -49,14 +50,14 @@
 			    text-shadow: 0px 1px 1px black;	
 			">
 				<div class="col-md-12">
-					<h2 class="titulo" style="font-size: 3em;"> SORTEOS DEL DIA </h2>
+					<h2 class="titulo" style="font-size: 3em;"> SORTEOS DEL DIA ( {{ dateSi }} )  </h2>
 					<hr style="background-color: red;">
 				</div>
 			</div>			
 		</div>
 		<div class="container mt-5">
 			<div class="row">
-				<div class="col-md-12" v-if='!resulSorteo'>
+				<div class="col-md-12" v-if='!resulSorteo || resulSorteo == "" '>
 					<div class="p-5">
 						<h2 class="text-center">ESPERANDO RESULTADOS</h2>					
 					</div>
@@ -67,7 +68,44 @@
 						<p class="text-center titulo"> <span style="font-size: 20px;">{{resultado.hora}}</span> <br> N# Sorteo:  {{resultado.nro_sorteo}}</p>
 					</div>
 				</div>
-			</div>					
+			</div>
+
+			<div class="row justify-content-center mb-5">
+				<div class="col-md-4 text-center">
+					<button class="btn btn-primary mt-1" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">- HISTORIAL DE RESULTADOS - </button>
+				</div>
+			</div>	
+
+			<!-- modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Buscar Resultado</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <div class="form-group">
+						<div class="input-group mb-3">
+						  <input type="date" class="form-control" placeholder="Buscar por fecha" aria-label="Buscar por fecha" aria-describedby="button-addon2" v-model='buscador' v-on:keyup.enter="buscar()">
+						  <div class="input-group-append">
+						    <button class="btn btn-outline-success" id="button-addon2" v-on:click='buscar()'>Buscar</button>
+						  </div>
+						</div>
+			        </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			        <!-- <button type="button" class="btn btn-primary"></button> -->
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- fin modal -->
+
+
 		</div>
 		<!-- FIN SORTEOS DEL DIA -->
 
@@ -133,8 +171,7 @@
 				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-32">12:00 PM</h3></div>
 				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-24">1:00 PM</h3></div>
 			</div>
-			<div class="row justify-content-center">
-				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-32">2:00 PM</h3></div>					
+			<div class="row justify-content-center">				
 				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-24">3:00 PM</h3></div>
 				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-32">4:00 PM</h3></div>
 				<div class="col-6 col-sm-6 col-md-2"> <h3 class="p-1 text-center shadow-sm mb-5 bg-white rounded font-24">6:00 PM</h3></div>
@@ -153,170 +190,171 @@
 				</div>
 			</div>
 			
-			<!-- Primer Carrusel -->
-			<div class="row mt-1">
-				<div class="col-md-12">
+			<div id="animalitos">
+					<!-- Primer Carrusel -->
+					<div class="row mt-1">
+						<div class="col-md-12">
 
-					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					  <ol class="carousel-indicators">
-					    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-					  </ol>
-					  <div class="carousel-inner">
-					    <div class="carousel-item active">
-					    	<ul class="nav justify-content-center">
-								<li class="nav-item"><img v-bind:src="imgData[0]['img']" class="w-220" width="220"></li>				
-								<li class="nav-item"><img v-bind:src="imgData[1]['img']" class="w-220" width="220"></li>		
-								<li class="nav-item"><img v-bind:src="imgData[2]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[3]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[4]['img']" class="w-220" width="220"></li>			
-					    	</ul>
-					    </div>
-					    <div class="carousel-item">
-					    	<ul class="nav justify-content-center">
-								<li class="nav-item"><img v-bind:src="imgData[5]['img']" class="w-220" width="220"></li>				
-								<li class="nav-item"><img v-bind:src="imgData[6]['img']" class="w-220" width="220"></li>		
-								<li class="nav-item"><img v-bind:src="imgData[7]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[8]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[9]['img']" class="w-220" width="220"></li>	
-							</ul>
-					    </div>
-					  </div>
-					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a>
+							<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+							  <ol class="carousel-indicators">
+							    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+							    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+							    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+							  </ol>
+							  <div class="carousel-inner">
+							    <div class="carousel-item active">
+							    	<ul class="nav justify-content-center">
+										<li class="nav-item"><img v-bind:src="imgData[0]['img']" class="w-220" width="220"></li>				
+										<li class="nav-item"><img v-bind:src="imgData[1]['img']" class="w-220" width="220"></li>		
+										<li class="nav-item"><img v-bind:src="imgData[2]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[3]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[4]['img']" class="w-220" width="220"></li>			
+							    	</ul>
+							    </div>
+							    <div class="carousel-item">
+							    	<ul class="nav justify-content-center">
+										<li class="nav-item"><img v-bind:src="imgData[5]['img']" class="w-220" width="220"></li>				
+										<li class="nav-item"><img v-bind:src="imgData[6]['img']" class="w-220" width="220"></li>		
+										<li class="nav-item"><img v-bind:src="imgData[7]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[8]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[9]['img']" class="w-220" width="220"></li>	
+									</ul>
+							    </div>
+							  </div>
+							  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+							    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							    <span class="sr-only">Previous</span>
+							  </a>
+							  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							    <span class="sr-only">Next</span>
+							  </a>
+							</div>					
+						</div>
+					</div>			
+
+					<!-- Segundo Carrusel -->
+					<div class="row mt-1">
+						<div class="col-md-12">
+
+							<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+							  <ol class="carousel-indicators">
+							    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+							    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+							    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+							  </ol>
+							  <div class="carousel-inner">
+							    <div class="carousel-item active">
+							    	<ul class="nav justify-content-center">
+										<li class="nav-item"><img v-bind:src="imgData[10]['img']" class="w-220" width="220"></li>				
+										<li class="nav-item"><img v-bind:src="imgData[11]['img']" class="w-220" width="220"></li>		
+										<li class="nav-item"><img v-bind:src="imgData[12]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[13]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[14]['img']" class="w-220" width="220"></li>			
+							    	</ul>
+							    </div>
+							    <div class="carousel-item">
+							    	<ul class="nav justify-content-center">
+										<li class="nav-item"><img v-bind:src="imgData[15]['img']" class="w-220" width="220"></li>				
+										<li class="nav-item"><img v-bind:src="imgData[16]['img']" class="w-220" width="220"></li>		
+										<li class="nav-item"><img v-bind:src="imgData[17]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[18]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[19]['img']" class="w-220" width="220"></li>	
+									</ul>
+							    </div>
+							  </div>
+							  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+							    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							    <span class="sr-only">Previous</span>
+							  </a>
+							  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							    <span class="sr-only">Next</span>
+							  </a>
+							</div>					
+						</div>
+					</div>		
+
+					<!-- Tres Carrusel -->
+					<div class="row mt-1">
+						<div class="col-md-12">
+
+							<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+							  <ol class="carousel-indicators">
+							    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+							    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+							    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+							  </ol>
+							  <div class="carousel-inner">
+							    <div class="carousel-item active">
+							    	<ul class="nav justify-content-center">
+										<li class="nav-item"><img v-bind:src="imgData[20]['img']" class="w-220" width="220"></li>				
+										<li class="nav-item"><img v-bind:src="imgData[21]['img']" class="w-220" width="220"></li>		
+										<li class="nav-item"><img v-bind:src="imgData[22]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[23]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[24]['img']" class="w-220" width="220"></li>			
+							    	</ul>
+							    </div>
+							    <div class="carousel-item">
+							    	<ul class="nav justify-content-center">
+										<li class="nav-item"><img v-bind:src="imgData[25]['img']" class="w-220" width="220"></li>				
+										<li class="nav-item"><img v-bind:src="imgData[26]['img']" class="w-220" width="220"></li>		
+										<li class="nav-item"><img v-bind:src="imgData[27]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[28]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[29]['img']" class="w-220" width="220"></li>	
+									</ul>
+							    </div>
+							  </div>
+							  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+							    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							    <span class="sr-only">Previous</span>
+							  </a>
+							  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							    <span class="sr-only">Next</span>
+							  </a>
+							</div>					
+						</div>
 					</div>					
-				</div>
-			</div>			
 
-			<!-- Segundo Carrusel -->
-			<div class="row mt-1">
-				<div class="col-md-12">
-
-					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					  <ol class="carousel-indicators">
-					    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-					  </ol>
-					  <div class="carousel-inner">
-					    <div class="carousel-item active">
-					    	<ul class="nav justify-content-center">
-								<li class="nav-item"><img v-bind:src="imgData[10]['img']" class="w-220" width="220"></li>				
-								<li class="nav-item"><img v-bind:src="imgData[11]['img']" class="w-220" width="220"></li>		
-								<li class="nav-item"><img v-bind:src="imgData[12]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[13]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[14]['img']" class="w-220" width="220"></li>			
-					    	</ul>
-					    </div>
-					    <div class="carousel-item">
-					    	<ul class="nav justify-content-center">
-								<li class="nav-item"><img v-bind:src="imgData[15]['img']" class="w-220" width="220"></li>				
-								<li class="nav-item"><img v-bind:src="imgData[16]['img']" class="w-220" width="220"></li>		
-								<li class="nav-item"><img v-bind:src="imgData[17]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[18]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[19]['img']" class="w-220" width="220"></li>	
-							</ul>
-					    </div>
-					  </div>
-					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a>
+					<!-- Cuatro Carrusel -->
+					<div class="row mt-1">
+						<div class="col-md-12">
+							<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+							  <ol class="carousel-indicators">
+							    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+							    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>					   
+							  </ol>
+							  <div class="carousel-inner">
+							    <div class="carousel-item active">
+							    	<ul class="nav justify-content-center">
+										<li class="nav-item"><img v-bind:src="imgData[30]['img']" class="w-220" width="220"></li>				
+										<li class="nav-item"><img v-bind:src="imgData[31]['img']" class="w-220" width="220"></li>		
+										<li class="nav-item"><img v-bind:src="imgData[32]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[33]['img']" class="w-220" width="220"></li>
+										<li class="nav-item"><img v-bind:src="imgData[34]['img']" class="w-220" width="220"></li>			
+							    	</ul>
+							    </div>
+							    <div class="carousel-item">
+							    	<ul class="nav justify-content-center">
+										<li class="nav-item"><img v-bind:src="imgData[35]['img']" class="w-220" width="220"></li>				
+										<li class="nav-item"><img v-bind:src="imgData[36]['img']" class="w-220" width="220"></li>		
+										<li class="nav-item"><img v-bind:src="imgData[37]['img']" class="w-220" width="220"></li>
+									</ul>
+							    </div>
+							  </div>
+							  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+							    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							    <span class="sr-only">Previous</span>
+							  </a>
+							  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							    <span class="sr-only">Next</span>
+							  </a>
+							</div>					
+						</div>
 					</div>					
-				</div>
-			</div>		
-
-			<!-- Tres Carrusel -->
-			<div class="row mt-1">
-				<div class="col-md-12">
-
-					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					  <ol class="carousel-indicators">
-					    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-					  </ol>
-					  <div class="carousel-inner">
-					    <div class="carousel-item active">
-					    	<ul class="nav justify-content-center">
-								<li class="nav-item"><img v-bind:src="imgData[20]['img']" class="w-220" width="220"></li>				
-								<li class="nav-item"><img v-bind:src="imgData[21]['img']" class="w-220" width="220"></li>		
-								<li class="nav-item"><img v-bind:src="imgData[22]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[23]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[24]['img']" class="w-220" width="220"></li>			
-					    	</ul>
-					    </div>
-					    <div class="carousel-item">
-					    	<ul class="nav justify-content-center">
-								<li class="nav-item"><img v-bind:src="imgData[25]['img']" class="w-220" width="220"></li>				
-								<li class="nav-item"><img v-bind:src="imgData[26]['img']" class="w-220" width="220"></li>		
-								<li class="nav-item"><img v-bind:src="imgData[27]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[28]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[29]['img']" class="w-220" width="220"></li>	
-							</ul>
-					    </div>
-					  </div>
-					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a>
-					</div>					
-				</div>
-			</div>					
-
-			<!-- Cuatro Carrusel -->
-			<div class="row mt-1">
-				<div class="col-md-12">
-
-					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					  <ol class="carousel-indicators">
-					    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>					   
-					  </ol>
-					  <div class="carousel-inner">
-					    <div class="carousel-item active">
-					    	<ul class="nav justify-content-center">
-								<li class="nav-item"><img v-bind:src="imgData[30]['img']" class="w-220" width="220"></li>				
-								<li class="nav-item"><img v-bind:src="imgData[31]['img']" class="w-220" width="220"></li>		
-								<li class="nav-item"><img v-bind:src="imgData[32]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[33]['img']" class="w-220" width="220"></li>
-								<li class="nav-item"><img v-bind:src="imgData[34]['img']" class="w-220" width="220"></li>			
-					    	</ul>
-					    </div>
-					    <div class="carousel-item">
-					    	<ul class="nav justify-content-center">
-								<li class="nav-item"><img v-bind:src="imgData[35]['img']" class="w-220" width="220"></li>				
-								<li class="nav-item"><img v-bind:src="imgData[36]['img']" class="w-220" width="220"></li>		
-								<li class="nav-item"><img v-bind:src="imgData[37]['img']" class="w-220" width="220"></li>
-							</ul>
-					    </div>
-					  </div>
-					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a>
-					</div>					
-				</div>
-			</div>					
+			</div>				
 
 		</div>
 		<!-- FIN ANIMALITOS -->		
@@ -326,7 +364,7 @@
 		<div class="container mt-10">
 			<div class="row">
 				<div class="col-md-12">
-					<h2 class="titulo text-center">PATROCINADO</h2>
+					<h2 class="titulo text-center">AUTORIZADO</h2>
 					<hr style="width: 45%;">
 				</div>
 			</div>
@@ -343,19 +381,30 @@
 		<!-- fin patrocinadores -->
 
 		<!-- FOOTER -->
-		<div class="container-fluid mt-5" style="background-color: green">
+		<div class="container-fluid mt-5" style="background-color: #343A40">
 			<div class="row">
 				<div class="col-md-4">
-					<a href="http://felixblanco.com.ve/" target="_blank"><img src="img/fb-400x400.png" class="img-fluid d-block mx-auto" alt="Felix Blanco - FullStack Develloper" width="80"></a>
+					<a href="http://felixblanco.com.ve/" target="_blank">
+						<img src="img/logo-fb.png" class="img-fluid d-block mx-auto mt-5" alt="Felix Blanco - FullStack Develloper" width="300">
+					</a>
 				</div>
 				<div class="col-md-4">
-					<div class="p-3 text-center">
-						<a href='img/reglamento-ruleta.PDF' target="_blank" style="color: black;">- Descarga Reglamento PDF <i class="far fa-file-pdf"></i> -</a>					
+					<div class="p-2">
+						<div class="pt-2 txt-white">
+							<p><b>Dirección</b>  <br> Sede de la lotería de Oriente de Maturín, Estado Monagas.</p>
+							<p><b>Teléfono</b>  <br> (+0291) 645 2690</p>
+							<p><b>Correo electronico</b> <br> ruletaactivaoficial@gmail.com	</p>												
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-right">
-					<button class="btn btn-outline-second mt-4" id="arriba">
-						<i class="fas fa-chevron-up"></i>
+					<p class="text-center p-3 mt-4 txt-white">
+						<a href='img/reglamento-ruleta.PDF' target="_blank" style="color: white;">
+							- Descarga Reglamento PDF <i class="far fa-file-pdf"></i> -
+						</a>
+					</p>
+					<button class="btn btn-outline-second mt-2" id="arriba">
+						<i class="fas fa-chevron-up txt-white"></i>
 					</button>
 				</div>
 			</div>
@@ -394,7 +443,8 @@
 					scrollTop: $(strAncla).offset().top
 				},1000);
 				
-			});			
+			});	
+
 		})		
 	</script>
 </body>

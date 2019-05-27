@@ -4,19 +4,18 @@
 	Style Para: Loteria de Oriente - Ruleta ;
 */
 
-@import url('https://fonts.googleapis.com/css?family=Catamaran|Signika|Lobster');
+@import url('https://fonts.googleapis.com/css?family=Catamaran|Ranga&display=swap');
 /*
 	Google Fonts
+	font-family: 'Ranga', cursive;
 	font-family: 'Catamaran', sans-serif;
-	font-family: 'Signika', sans-serif;	
-    font-family: 'Lobster', cursive;	
 */
 
 body{ font-family: 'Catamaran', sans-serif; }
 
 .navbar .nav-link{ font-size: 22px; }
-.titulo{ font-family: 'Lobster', cursive; }
-
+.titulo{ font-family: 'Ranga', cursive; }
+.txt-white{ color: white; }
 .font-20{ font-size: 20px; }
 .font-24{ font-size: 24px; }
 .font-26{ font-size: 26px; }
